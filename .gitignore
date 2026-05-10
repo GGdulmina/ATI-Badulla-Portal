@@ -1,0 +1,20 @@
+build/
+dist/
+nbproject/private/
+*.class
+*.log
+.DS_Store
+/WebApplication1/nbproject/private/
+
+# Compiled Web Archives
+*.war
+*.ear
+
+# NetBeans generated files
+WebApplication1/nbproject/genfiles.properties
+WebApplication1/nbproject/project.properties.old
+
+# OS-specific files (already have .DS_Store, adding Linux/Windows others)
+Thumbs.db
+*~
+*.swp
