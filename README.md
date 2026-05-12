@@ -1,4 +1,12 @@
 # ATI-Badulla-Portal
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Language](https://img.shields.io/badge/Language-Java-blue)
+![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-orange)
+![Backend](https://img.shields.io/badge/Backend-Servlets%20%2F%20JSP-red)
+![Database](https://img.shields.io/badge/Database-MySQL-blue)
+![Server](https://img.shields.io/badge/Server-Apache%20Tomcat-yellow)
+![IDE](https://img.shields.io/badge/IDE-NetBeans-1b6ac6)
+![License](https://img.shields.io/badge/License-Educational-lightgrey)
 
 ## Project Overview
 The ATI Badulla Web Portal is a dynamic web application built using Java Web (Servlets/JSP). It serves as a dual-purpose platform featuring a public-facing website for visitors and a secure administrative backend for content management. The portal is designed to streamline information delivery for students and faculty at ATI Badulla.  
