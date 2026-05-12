@@ -4,13 +4,6 @@
 ![Backend](https://img.shields.io/badge/Backend-Servlets%20%2F%20JSP-red)
 ![Database](https://img.shields.io/badge/Database-MySQL-blue)
 ![Academic Project](https://img.shields.io/badge/Project-ATI%20Badulla%20Portal-informational)
-
-![Language](https://img.shields.io/badge/Language-Java-blue)
-![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-orange)
-![Backend](https://img.shields.io/badge/Backend-Servlets%20%2F%20JSP-red)
-![Database](https://img.shields.io/badge/Database-MySQL-blue)
-![Academic Project](https://img.shields.io/badge/Project-ATI%20Badulla%20Portal-informational)
-
 ---
 
 ## Project Overview
