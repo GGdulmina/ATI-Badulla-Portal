@@ -1,7 +1,8 @@
 # ATI-Badulla-Portal
-![Architecture](https://img.shields.io/badge/Architecture-MVC-purple)
-![Type](https://img.shields.io/badge/Type-Web%20Application-success)
-![Security](https://img.shields.io/badge/Auth-Session%20Based-critical)
+![Language](https://img.shields.io/badge/Language-Java-blue)
+![Frontend](https://img.shields.io/badge/Frontend-HTML%2FCSS%2FJS-orange)
+![Backend](https://img.shields.io/badge/Backend-Servlets%20%2F%20JSP-red)
+![Database](https://img.shields.io/badge/Database-MySQL-blue)
 ![Academic Project](https://img.shields.io/badge/Project-ATI%20Badulla%20Portal-informational)
 
 ## Project Overview
