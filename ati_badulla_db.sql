@@ -29,7 +29,7 @@ CREATE TABLE `courses` (
   `description` text,
   `category` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
+INSERT INTO `courses` VALUES (1,'Diploma in ICT','2 Years','Covers programming, networking, and database management.','Diploma'),(2,'Diploma in Civil Engineering','2 Years','Structural design, surveying, and construction management.','Diploma'),(3,'Certificate in English','6 Months','Business English and communication skills.','Certificate'),(4,'Certificate in Electrical Installation','1 Year','Wiring, safety, and electrical systems.','Certificate'),(5,'Diploma in ICT','2 Years','Programming, networking and database management.','Diploma'),(6,'Diploma in Civil Engineering','2 Years','Structural design, surveying and construction.','Diploma'),(7,'Diploma in Electrical Engineering','2 Years','Electrical systems, wiring and power distribution.','Diploma'),(8,'Certificate in English','6 Months','Business English and communication skills.','Certificate'),(9,'Certificate in Electrical Installation','1 Year','Wiring, safety and electrical systems.','Certificate'),(10,'Certificate in Computing','1 Year','Basic computing, MS Office and internet skills.','Certificate');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -108,7 +109,7 @@ CREATE TABLE `results` (
   `grade` varchar(5) DEFAULT NULL,
   `exam_date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,6 +118,7 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
+INSERT INTO `results` VALUES (1,'ATI/2024/001','Diploma in ICT',78,'B','2024-12-15'),(2,'ATI/2024/002','Diploma in ICT',91,'A','2024-12-15'),(3,'ATI/2024/003','Certificate in English',65,'C','2024-12-20'),(4,'ATI/2024/001','Certificate in Computing',85,'A','2024-12-20');
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +168,7 @@ CREATE TABLE `visitor_counter` (
 
 LOCK TABLES `visitor_counter` WRITE;
 /*!40000 ALTER TABLE `visitor_counter` DISABLE KEYS */;
-INSERT INTO `visitor_counter` VALUES (1,1);
+INSERT INTO `visitor_counter` VALUES (1,10);
 /*!40000 ALTER TABLE `visitor_counter` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -179,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-05-12 22:48:02
+-- Dump completed on 2026-05-19 22:05:34
