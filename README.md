@@ -232,17 +232,134 @@ The interface follows a structured modular architecture emphasizing high-contras
 ## Project Structure
 
 ```
-ATI-Badulla-Portal/
-├── ati_badulla_db.sql          ← Import this first
+├── ati_badulla_db.sql   <- Import this
+├── LICENSE
 ├── README.md
-└── WebApplication1/            ← Open this folder in NetBeans
-    ├── src/java/
-    │   ├── db/DBConnection.java
-    │   ├── listeners/VisitorCounterListener.java
-    │   ├── models/
-    │   └── servlets/
-    └── web/
+└── WebApplication1
+    ├── build
+    │   ├── empty
+    │   ├── generated-sources
+    │   │   └── ap-source-output
+    │   └── web
+    │       ├── about.jsp
+    │       ├── admin
+    │       │   ├── dashboard.jsp
+    │       │   ├── login.jsp
+    │       │   ├── manageCourses.jsp
+    │       │   ├── manageGallery.jsp
+    │       │   ├── manageNotices.jsp
+    │       │   └── manageResults.jsp
+    │       ├── assets
+    │       │   ├── css
+    │       │   │   └── style.css
+    │       │   ├── js
+    │       │   │   └── main.js
+    │       │   └── uploads
+    │       ├── contact.jsp
+    │       ├── courses.jsp
+    │       ├── gallery.jsp
+    │       ├── includes
+    │       │   ├── adminNavbar.jsp
+    │       │   ├── adminSidebar.jsp
+    │       │   ├── footer.jsp
+    │       │   └── navbar.jsp
+    │       ├── index.jsp
+    │       ├── META-INF
+    │       │   ├── context.xml
+    │       │   └── MANIFEST.MF
+    │       ├── results.jsp
+    │       └── WEB-INF
+    │           ├── classes
+    │           │   ├── AppContextListener.rs
+    │           │   ├── db
+    │           │   │   └── DBConnection.class
+    │           │   ├── listeners
+    │           │   │   ├── AppContextListener.class
+    │           │   │   └── VisitorCounterListener.class
+    │           │   ├── models
+    │           │   │   ├── Course.class
+    │           │   │   ├── Gallery.class
+    │           │   │   ├── Notice.class
+    │           │   │   └── Result.class
+    │           │   └── servlets
+    │           │       ├── AdminLoginServlet.class
+    │           │       ├── AdminLogoutServlet.class
+    │           │       ├── CourseServlet.class
+    │           │       ├── CoursesServlet.class
+    │           │       ├── GalleryServlet.class
+    │           │       ├── GalleryUploadServlet.class
+    │           │       ├── HomeServlet.class
+    │           │       ├── NoticeServlet.class
+    │           │       ├── ResultAdminServlet.class
+    │           │       └── ResultsServlet.class
+    │           ├── lib
+    │           │   ├── jakarta.servlet.jsp.jstl-3.0.1.jar
+    │           │   ├── jakarta.servlet.jsp.jstl-api-3.0.0.jar
+    │           │   └── mysql-connector-j-9.7.0.jar
+    │           └── web.xml
+    ├── build.xml
+    ├── nbproject
+    │   ├── ant-deploy.xml
+    │   ├── build-impl.xml
+    │   ├── build-impl.xml~
+    │   ├── genfiles.properties
+    │   ├── private
+    │   │   └── private.properties
+    │   ├── project.properties
+    │   └── project.xml
+    ├── src
+    │   ├── conf
+    │   │   └── MANIFEST.MF
+    │   └── java
+    │       ├── db
+    │       │   └── DBConnection.java
+    │       ├── listeners
+    │       │   ├── AppContextListener.java
+    │       │   └── VisitorCounterListener.java
+    │       ├── models
+    │       │   ├── Course.java
+    │       │   ├── Gallery.java
+    │       │   ├── Notice.java
+    │       │   └── Result.java
+    │       └── servlets
+    │           ├── AdminLoginServlet.java
+    │           ├── AdminLogoutServlet.java
+    │           ├── CourseServlet.java
+    │           ├── CoursesServlet.java
+    │           ├── GalleryServlet.java
+    │           ├── GalleryUploadServlet.java
+    │           ├── HomeServlet.java
+    │           ├── NoticeServlet.java
+    │           ├── ResultAdminServlet.java
+    │           └── ResultsServlet.java
+    ├── test
+    └── web
+        ├── about.jsp
+        ├── admin
+        │   ├── dashboard.jsp
+        │   ├── login.jsp
+        │   ├── manageCourses.jsp
+        │   ├── manageGallery.jsp
+        │   ├── manageNotices.jsp
+        │   └── manageResults.jsp
+        ├── assets
+        │   ├── css
+        │   │   └── style.css
+        │   ├── js
+        │   │   └── main.js
+        │   └── uploads
+        ├── contact.jsp
+        ├── courses.jsp
+        ├── gallery.jsp
+        ├── includes
+        │   ├── adminNavbar.jsp
+        │   ├── adminSidebar.jsp
+        │   ├── footer.jsp
+        │   └── navbar.jsp
         ├── index.jsp
-        ├── admin/
-        └── WEB-INF/web.xml
+        ├── META-INF
+        │   └── context.xml
+        ├── results.jsp
+        └── WEB-INF
+            └── web.xml
 ```
