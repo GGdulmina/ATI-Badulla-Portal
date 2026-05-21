@@ -1,7 +1,7 @@
 package servlets;
 
 import db.DBConnection;
-import models.Notice;
+import models.Result;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -9,8 +9,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-@WebServlet("/admin/notices")
-public class NoticeServlet extends HttpServlet {
+@WebServlet("/admin/results")
+public class ResultAdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -21,29 +21,30 @@ public class NoticeServlet extends HttpServlet {
             return;
         }
 
-        List<Notice> notices = new ArrayList<>();
+        List<Result> results = new ArrayList<>();
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(
-                "SELECT * FROM notices ORDER BY priority DESC, posted_date DESC");
+                "SELECT * FROM results ORDER BY exam_date DESC");
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Notice n = new Notice();
-                n.setId(rs.getInt("id"));
-                n.setTitle(rs.getString("title"));
-                n.setContent(rs.getString("content"));
-                n.setPriority(rs.getInt("priority"));
-                n.setPostedDate(rs.getTimestamp("posted_date"));
-                notices.add(n);
+                Result r = new Result();
+                r.setId(rs.getInt("id"));
+                r.setStudentIndex(rs.getString("student_index"));
+                r.setCourseName(rs.getString("course_name"));
+                r.setMarks(rs.getInt("marks"));
+                r.setGrade(rs.getString("grade"));
+                r.setExamDate(rs.getDate("exam_date"));
+                results.add(r);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        request.setAttribute("notices", notices);
-        request.getRequestDispatcher("/admin/manageNotices.jsp").forward(request, response);
+        request.setAttribute("results", results);
+        request.getRequestDispatcher("/admin/manageResults.jsp").forward(request, response);
     }
 
     @Override
@@ -60,29 +61,28 @@ public class NoticeServlet extends HttpServlet {
         try (Connection con = DBConnection.getConnection()) {
 
             switch (action) {
+
                 case "create": {
-                    String sql = "INSERT INTO notices (title, content, priority) VALUES (?,?,?)";
+                    // Auto-calculate grade from marks
+                    int marks = Integer.parseInt(request.getParameter("marks"));
+                    String grade = calculateGrade(marks);
+
+                    String sql = "INSERT INTO results "
+                               + "(student_index, course_name, marks, grade, exam_date) "
+                               + "VALUES (?,?,?,?,?)";
                     try (PreparedStatement ps = con.prepareStatement(sql)) {
-                        ps.setString(1, request.getParameter("title"));
-                        ps.setString(2, request.getParameter("content"));
-                        ps.setInt(3, Integer.parseInt(request.getParameter("priority")));
+                        ps.setString(1, request.getParameter("studentIndex"));
+                        ps.setString(2, request.getParameter("courseName"));
+                        ps.setInt(3, marks);
+                        ps.setString(4, grade);
+                        ps.setDate(5, Date.valueOf(request.getParameter("examDate")));
                         ps.executeUpdate();
                     }
                     break;
                 }
-                case "update": {
-                    String sql = "UPDATE notices SET title=?, content=?, priority=? WHERE id=?";
-                    try (PreparedStatement ps = con.prepareStatement(sql)) {
-                        ps.setString(1, request.getParameter("title"));
-                        ps.setString(2, request.getParameter("content"));
-                        ps.setInt(3, Integer.parseInt(request.getParameter("priority")));
-                        ps.setInt(4, Integer.parseInt(request.getParameter("id")));
-                        ps.executeUpdate();
-                    }
-                    break;
-                }
+
                 case "delete": {
-                    String sql = "DELETE FROM notices WHERE id=?";
+                    String sql = "DELETE FROM results WHERE id=?";
                     try (PreparedStatement ps = con.prepareStatement(sql)) {
                         ps.setInt(1, Integer.parseInt(request.getParameter("id")));
                         ps.executeUpdate();
@@ -95,6 +95,15 @@ public class NoticeServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect(request.getContextPath() + "/admin/notices");
+        response.sendRedirect(request.getContextPath() + "/admin/results");
+    }
+
+    // Auto grade calculation — A:75+, B:65+, C:55+, S:40+, F:below 40
+    private String calculateGrade(int marks) {
+        if (marks >= 75) return "A";
+        if (marks >= 65) return "B";
+        if (marks >= 55) return "C";
+        if (marks >= 40) return "S";
+        return "F";
     }
 }

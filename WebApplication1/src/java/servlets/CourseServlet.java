@@ -1,7 +1,7 @@
 package servlets;
 
 import db.DBConnection;
-import models.Notice;
+import models.Course;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -9,8 +9,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-@WebServlet("/admin/notices")
-public class NoticeServlet extends HttpServlet {
+@WebServlet("/admin/courses")
+public class CourseServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -21,29 +21,29 @@ public class NoticeServlet extends HttpServlet {
             return;
         }
 
-        List<Notice> notices = new ArrayList<>();
+        List<Course> courses = new ArrayList<>();
 
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(
-                "SELECT * FROM notices ORDER BY priority DESC, posted_date DESC");
+                "SELECT * FROM courses ORDER BY category, name");
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                Notice n = new Notice();
-                n.setId(rs.getInt("id"));
-                n.setTitle(rs.getString("title"));
-                n.setContent(rs.getString("content"));
-                n.setPriority(rs.getInt("priority"));
-                n.setPostedDate(rs.getTimestamp("posted_date"));
-                notices.add(n);
+                Course c = new Course();
+                c.setId(rs.getInt("id"));
+                c.setName(rs.getString("name"));
+                c.setDuration(rs.getString("duration"));
+                c.setDescription(rs.getString("description"));
+                c.setCategory(rs.getString("category"));
+                courses.add(c);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        request.setAttribute("notices", notices);
-        request.getRequestDispatcher("/admin/manageNotices.jsp").forward(request, response);
+        request.setAttribute("courses", courses);
+        request.getRequestDispatcher("/admin/manageCourses.jsp").forward(request, response);
     }
 
     @Override
@@ -61,28 +61,30 @@ public class NoticeServlet extends HttpServlet {
 
             switch (action) {
                 case "create": {
-                    String sql = "INSERT INTO notices (title, content, priority) VALUES (?,?,?)";
+                    String sql = "INSERT INTO courses (name, duration, description, category) VALUES (?,?,?,?)";
                     try (PreparedStatement ps = con.prepareStatement(sql)) {
-                        ps.setString(1, request.getParameter("title"));
-                        ps.setString(2, request.getParameter("content"));
-                        ps.setInt(3, Integer.parseInt(request.getParameter("priority")));
+                        ps.setString(1, request.getParameter("name"));
+                        ps.setString(2, request.getParameter("duration"));
+                        ps.setString(3, request.getParameter("description"));
+                        ps.setString(4, request.getParameter("category"));
                         ps.executeUpdate();
                     }
                     break;
                 }
                 case "update": {
-                    String sql = "UPDATE notices SET title=?, content=?, priority=? WHERE id=?";
+                    String sql = "UPDATE courses SET name=?, duration=?, description=?, category=? WHERE id=?";
                     try (PreparedStatement ps = con.prepareStatement(sql)) {
-                        ps.setString(1, request.getParameter("title"));
-                        ps.setString(2, request.getParameter("content"));
-                        ps.setInt(3, Integer.parseInt(request.getParameter("priority")));
-                        ps.setInt(4, Integer.parseInt(request.getParameter("id")));
+                        ps.setString(1, request.getParameter("name"));
+                        ps.setString(2, request.getParameter("duration"));
+                        ps.setString(3, request.getParameter("description"));
+                        ps.setString(4, request.getParameter("category"));
+                        ps.setInt(5, Integer.parseInt(request.getParameter("id")));
                         ps.executeUpdate();
                     }
                     break;
                 }
                 case "delete": {
-                    String sql = "DELETE FROM notices WHERE id=?";
+                    String sql = "DELETE FROM courses WHERE id=?";
                     try (PreparedStatement ps = con.prepareStatement(sql)) {
                         ps.setInt(1, Integer.parseInt(request.getParameter("id")));
                         ps.executeUpdate();
@@ -95,6 +97,6 @@ public class NoticeServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect(request.getContextPath() + "/admin/notices");
+        response.sendRedirect(request.getContextPath() + "/admin/courses");
     }
 }

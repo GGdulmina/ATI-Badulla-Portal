@@ -6,52 +6,77 @@
     }
 %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - ATI Badulla</title>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
-<body>
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container-fluid">
-        <span class="navbar-brand">ATI Admin Panel</span>
-        <span class="text-white me-3">Welcome, <%= session.getAttribute("adminUser") %></span>
-        <a href="${pageContext.request.contextPath}/adminLogout" class="btn btn-sm btn-danger">Logout</a>
-    </div>
-</nav>
+<body class="bg-light">
 
-<div class="container mt-4">
-    <div class="row g-3">
-        <div class="col-md-3">
-            <a href="manageNotices.jsp" class="text-decoration-none">
-                <div class="card text-white bg-primary text-center p-3">
-                    <h5>Manage Notices</h5>
+<%@ include file="/includes/adminNavbar.jsp" %>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+
+        <%@ include file="/includes/adminSidebar.jsp" %>
+
+        <div class="col-md-9 col-lg-10">
+            <h4 class="fw-bold text-primary mb-4">Dashboard</h4>
+
+            <div class="row g-3">
+                <div class="col-sm-6 col-lg-3">
+                    <a href="${pageContext.request.contextPath}/admin/notices"
+                       class="text-decoration-none">
+                        <div class="card border-0 shadow-sm text-center p-3 h-100">
+                            <div class="display-5 mb-2">📢</div>
+                            <h6 class="fw-bold text-primary">Notices</h6>
+                            <small class="text-muted">Manage newsline notices</small>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="uploadGallery.jsp" class="text-decoration-none">
-                <div class="card text-white bg-success text-center p-3">
-                    <h5>Gallery Upload</h5>
+                <div class="col-sm-6 col-lg-3">
+                    <a href="${pageContext.request.contextPath}/admin/courses"
+                       class="text-decoration-none">
+                        <div class="card border-0 shadow-sm text-center p-3 h-100">
+                            <div class="display-5 mb-2">📚</div>
+                            <h6 class="fw-bold text-success">Courses</h6>
+                            <small class="text-muted">Add or edit programmes</small>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="manageResults.jsp" class="text-decoration-none">
-                <div class="card text-white bg-warning text-center p-3">
-                    <h5>Exam Results</h5>
+                <div class="col-sm-6 col-lg-3">
+                    <a href="${pageContext.request.contextPath}/admin/gallery"
+                       class="text-decoration-none">
+                        <div class="card border-0 shadow-sm text-center p-3 h-100">
+                            <div class="display-5 mb-2">🖼️</div>
+                            <h6 class="fw-bold text-warning">Gallery</h6>
+                            <small class="text-muted">Upload event images</small>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        <div class="col-md-3">
-            <a href="manageCourses.jsp" class="text-decoration-none">
-                <div class="card text-white bg-secondary text-center p-3">
-                    <h5>Courses</h5>
+                <div class="col-sm-6 col-lg-3">
+                    <a href="${pageContext.request.contextPath}/admin/results"
+                       class="text-decoration-none">
+                        <div class="card border-0 shadow-sm text-center p-3 h-100">
+                            <div class="display-5 mb-2">📋</div>
+                            <h6 class="fw-bold text-danger">Results</h6>
+                            <small class="text-muted">Manage exam results</small>
+                        </div>
+                    </a>
                 </div>
-            </a>
+            </div>
+
+            <div class="alert alert-info mt-4">
+                <strong>Visitor count today:</strong>
+                ${applicationScope.visitorCount} total visits
+            </div>
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
