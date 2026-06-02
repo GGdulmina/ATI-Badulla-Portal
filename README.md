@@ -363,3 +363,10 @@ The interface follows a structured modular architecture emphasizing high-contras
         └── WEB-INF
             └── web.xml
 ```
+
+## Author
+
+**Dulmina**
+* **GitHub:** [@ggdulmina](https://github.com/ggdulmina)
+* **Institution:** Sri Lanka Institute of Advanced Technological Education (SLIATE)
+* **Qualification:** Higher National Diploma in Information Technology (NVQ Level 6)
